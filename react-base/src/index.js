@@ -3,7 +3,21 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import * as tf from '@tensorflow/tfjs'
+import * as tfvis from '@tensorflow/tfjs-vis'
 
+
+import {
+  getData
+} from './data.js'
+
+window.onload = async () => {
+  const data = getData()
+  console.log(data)
+  tfvis.render.scatterplot(
+    {name: '数据'}
+  )
+}
 //浏览器专用的 Dom
 ReactDOM.render(<App />, document.getElementById('root'));
 
