@@ -67,6 +67,9 @@ export default class App extends Component {
     console.log(this.cart)
   }
   reduce(){
+
+  }
+  add(){
     
   }
   render () {
