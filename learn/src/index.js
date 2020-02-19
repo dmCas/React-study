@@ -1,6 +1,9 @@
 // 入口
 import React from 'react'
 import ReactDOM from 'react-dom'
+import Lifecycle from './components/Lifecycle'
+import CommentVs from './components/CommentVs'
+import PureComponent from './components/PureComponentTest'
 // import App from './App'
 
 // class App extends React.Component {
@@ -152,5 +155,8 @@ class FeatureReturnFraments extends React.Component {
     ]
   }
 }
+
+
+
 //渲染函数
-ReactDOM.render(<React16 />, document.querySelector('#root'))
+ReactDOM.render(<PureComponent body='vue is very good' author='尤雨溪'/>, document.querySelector('#root'))
