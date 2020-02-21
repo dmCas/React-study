@@ -7,6 +7,7 @@ import PureComponent from './components/PureComponentTest'
 import ButtonTest from './components/ButtonTest' 
 // import Hoc from './components/Hoc'
 import ContextSample from './components/ContextSample'
+import HooksTest from './components/Hookstest'
 // import App from './App'
 
 // class App extends React.Component {
@@ -163,4 +164,4 @@ class FeatureReturnFraments extends React.Component {
 
 //渲染函数
 // ReactDOM.render(<PureComponent body='vue is very good' author='尤雨溪'/>, document.querySelector('#root'))
-ReactDOM.render(<ContextSample />, document.querySelector('#root'))
+ReactDOM.render(<HooksTest />, document.querySelector('#root'))
