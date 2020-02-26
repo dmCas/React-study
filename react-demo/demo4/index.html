@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="../build/react.development.js"></script>
+  <script src="../build/react-dom.development.js"></script>
+  <script src="../build/babel.min.js"></script>
+  <title>Document</title>
+</head>
+<body>
+  <div id="example"></div>
+  
+  <script type="text/babel"> 
+    class HelloMessage extends React.Component {
+      render () {
+        return <h1>Hello {this.props.name}</h1>
+      }
+    }
+
+    // React组件的第一个字母必须大写
+    // 组件类只能包含一个顶层便签
+    ReactDOM.render(
+      <HelloMessage name="猛哥"/>,
+      document.getElementById('example')
+    )
+  </script>
+</body>
+</html>

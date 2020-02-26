@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="../build/react.development.js"></script>
+  <script src="../build/react-dom.development.js"></script>
+  <script src="../build/babel.min.js"></script>
+  <title>Document</title>
+</head>
+<body>
+  <div id="example"></div>
+  
+  <!-- 表单 -->
+  <script type="text/babel"> 
+    class Input extends React.Component{
+      constructor(props) {
+        super(props)
+
+        this.state = {
+          value: 'Hello~'
+        }
+        this.handleChange = this.handleChange.bind(this)
+      }
+
+      handleChange(event){
+        console.log(event.target.value)
+        this.setState({
+          value: event.target.value
+        })
+      }
+
+      render () {
+        var value = this.state.value
+
+        // input textarea select radio 都是属于这种情况
+        return (
+          <div>
+            <input type="text"  onChange={this.handleChange}/>
+            <p>{value}</p>
+          </div>
+        )
+      }
+    }
+
+    ReactDOM.render(
+      <Input />,
+      document.getElementById('example')
+    )  
+  </script>
+</body>
+</html>

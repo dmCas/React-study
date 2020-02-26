@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="../build/react.development.js"></script>
+  <script src="../build/react-dom.development.js"></script>
+  <script src="../build/babel.min.js"></script>
+  <title>Document</title>
+</head>
+<body>
+  <div id="example"></div>
+  
+  <script type="text/babel"> 
+    var arr = [
+      <h1 key="1">hello world</h1>,
+      <h2 key="2">react is good</h2>,
+    ]
+    var arr2 = [
+      '1234',
+      '4321'
+    ]
+    ReactDOM.render( // jsx中允许直接插入js变量，如果是数组的话，则会散开这个数组的成员
+      <div>{arr2}</div>,
+      document.getElementById('example')
+    )  
+  </script>
+</body>
+</html>

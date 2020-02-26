@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=\, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="../build/react.development.js"></script>
+  <script src="../build/react-dom.development.js"></script>
+  <script src="../build/babel.min.js"></script>
+  <title>Document</title>
+</head>
+<body>
+  <div id="example"></div>
+
+  <script type="text/babel">
+    var names = ['蜗牛', '北辰','234']
+    ReactDOM.render( // jsx
+      <div>
+        {
+          names.map(
+            (item, index) => <div key={index}>hello, {item}</div>
+          )
+        }
+      </div>,
+      document.getElementById('example')
+    )
+  </script>
+</body>
+</html>

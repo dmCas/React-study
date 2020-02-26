@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="../build/react.development.js"></script>
+  <script src="../build/react-dom.development.js"></script>
+  <script src="../build/babel.min.js"></script>
+  <title>Document</title>
+</head>
+<body>
+  <div id="example"></div>
+  
+
+  <!-- this.props.children -->
+
+  <script type="text/babel"> 
+    class NotesList extends React.Component {
+      render () {
+        return (
+          <ol>
+            {
+              React.Children.map(this.props.children, function(child) {
+                console.log(child)
+                return <li>{child}</li>
+              })
+            }
+          </ol>
+        )
+      }
+    }  
+
+    // this.props对象的属性与组件的属性是一一对应的
+    // 但是, this.props.children属性是一个例外，他表示组建的所有子节点
+
+    // this.props.children值有三种情况：
+    // 如果当前组件无子节点，类型为undefined
+    // 如果当前组件有一个子节点，类型为object
+    // 如果当前组件有两个子节点，类型为array
+    ReactDOM.render (
+      //组件被调用时， 内部再插入html内容， 该内容被会视为参数
+      <NotesList name="我弄">
+        <span>hello</span>
+        <span>world</span>
+      </NotesList>,
+      document.getElementById('example')
+    )
+  </script>
+</body>
+</html>
