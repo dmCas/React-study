@@ -34,7 +34,7 @@ class Index extends Component {
                   lg={{ span: 5, offset: 1 }}
                   md={{ span: 6, offset: 1 }}
                   xs={{ span: 0 }}>
-                  left
+                  <SiderCustom />
                 </Col>
 
                 <Col
