@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { List, Tag } from 'antd'
 
 class BlogList extends Component {
   render () {
@@ -7,4 +8,5 @@ class BlogList extends Component {
     )
   }
 }
+
 export default BlogList
