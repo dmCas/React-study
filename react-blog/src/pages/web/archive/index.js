@@ -1,15 +1,12 @@
-import React, { Component } from 'react'
-import { List, Tag } from 'antd'
-import { color } from '../../../utils(公共方法）'
-import './list.less'
-import api from '../../../api'
-import { FolderOutlined, CalendarOutlined, TagsOutlined, EyeOutlined } from '@ant-design/icons';
-class BlogList extends Component {
+import React, { Component } from 'react';
+import { Timeline, Card } from 'antd';
+import { ClockCircleOutlined } from '@ant-design/icons';
+import { Link } from 'react-router-dom'
+import './index.less'
+class Archive extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      pageNo: 1,
-      pageSize: 5,
       data: [
         {
           "createdAt": "2019-11-11  10:57",
@@ -99,77 +96,32 @@ class BlogList extends Component {
     }
   }
 
-  // componentDidMount(){
-  //   this.getList()
-  // }
-
-  // async getList () {
-  //   this.setState({loading: true})
-  //   const params = {
-  //     pageNo: this.state.pageNo,
-  //     pageSize: this.state.pageSize
-  //   }
-  //   const  {data, code, total} = await api.get('http://xiangxi.red/api/article/list', params)
-  //   if( code === 1000) {
-  //     console.log(data)
-  //     this.setState({ data: data, total })
-  //   }
-  // }
-
   render() {
-    const IconText = ({ icon, text }) => (
-      <span>
-        {React.createElement(icon, { style: { marginRight: 8 } })}
-        {text}
-      </span>
-    );
-    return (
-      <div className="list-wrapper">
-        <List
-          pagination = {{
-            onChange: page => {
-              console.log(page)
-            },
-            pageSize: this.state.pageSize
-          }}
-          dataSource={this.state.data}
-          renderItem={(val) => (
-            <List.Item 
-            key={val.id}
-            actions={[
-              <IconText  icon={TagsOutlined} text={
-                val.tag.map( v => (
-                  <Tag key={val + Math.random()} color={color[Math.floor(Math.random() * 11)]}>{v}</Tag>
-                ))
-              } key="list-vertical-star-o" />,
-              <IconText icon={FolderOutlined} text={
-                val.category.map( v => (
-                  <Tag key={val + Math.random()} color={color[Math.floor(Math.random() * 11)]}>{v}</Tag>
-                ))
-              } key="list-vertical-like-o" />,
-              <IconText icon={CalendarOutlined} text={
-                val.createdAt} key="list-vertical-message" />,
-              <IconText icon={EyeOutlined} text={
-                  `${val.readedCount}次预览`} key="list-vertical-message" />,
-            ]}>
-              <List.Item.Meta
-                title={val.title}
-                description={val.summary}>
+    const ListDate = this.state.data.map((item) => (
+      <Timeline.Item key={item.id + Math.random()}>
+        <Link to={`/web/index/${item.id}`} >
 
-              </List.Item.Meta>
-            </List.Item>
-          )}>
-          {/* {
-            this.state.data.map((val) => (
-              <List-item key={val.id}>
-                {val.title}
-              </List-item>
-            ))
-          } */}
-        </List>
+          <span style={{ paddingRight: 10 }}>{item.createdAt.slice(0, 10)}</span>  {item.title}
+        </Link>
+      </Timeline.Item>
+
+    )
+    )
+    return (
+      <div>
+        <Card bordered={false}>
+          <Timeline>
+            <Timeline.Item dot={<ClockCircleOutlined style={{ fontSize: '16px' }} />} color="red">
+              <span style={{ fontSize: 18 }}>2020</span>
+            </Timeline.Item>
+            {
+              ListDate
+            }
+          </Timeline>
+        </Card>
       </div>
     )
   }
 }
 
-export default BlogList
+export default Archive

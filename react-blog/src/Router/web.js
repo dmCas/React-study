@@ -1,7 +1,7 @@
 import loadable from '../utils(公共方法）/loadable'
 import { HomeOutlined } from '@ant-design/icons';
 const List = loadable(() => import('../pages/web/list/list'))
-// const About = loadable(() => import('../pages/web/about'))
+const Archive = loadable(() => import('../pages/web/archive'))
 
 const webRoutes = [
   {
@@ -15,8 +15,8 @@ const webRoutes = [
     menu: true,
     icon: 'home',
     title: '归档',
-    path: '/web/about',
-    component: List
+    path: '/web/achieve',
+    component: Archive
   },
   {
     menu: true,
