@@ -1,36 +1,38 @@
 import loadable from '../utils(公共方法）/loadable'
-import { HomeOutlined } from '@ant-design/icons';
+import { HomeOutlined,EditOutlined, StarOutlined, TeamOutlined } from '@ant-design/icons';
 const List = loadable(() => import('../pages/web/list/list'))
 const Archive = loadable(() => import('../pages/web/archive'))
+const Star = loadable(() => import('../pages/web/star'))
+const About = loadable(() => import('../pages/web/about'))
 
 const webRoutes = [
   {
     menu: true,
-    icon: 'HomeOutlined',
+    icon: HomeOutlined,
     title: '首页',
     path: '/web/index',
     component: List
   },
   {
     menu: true,
-    icon: 'home',
+    icon: EditOutlined,
     title: '归档',
     path: '/web/achieve',
     component: Archive
   },
   {
     menu: true,
-    icon: 'home',
+    icon: StarOutlined,
     title: '收藏',
-    path: '/web/about',
-    component: List
+    path: '/web/star',
+    component: Star
   },
   {
     menu: true,
-    icon: 'home',
+    icon: StarOutlined,
     title: '关于',
     path: '/web/about',
-    component: List
+    component: About
   }
 ]
 

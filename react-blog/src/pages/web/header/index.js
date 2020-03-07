@@ -21,9 +21,9 @@ class HeaderCustom extends Component {
     //拿到menu为true字段的所有数据
     const list = menus.filter(v => v.menu)
     const menuList = list.map((item, i) => {
-      return <Menu.Item key={i}>
+      return <Menu.Item key={i} onClick={() =>sessionStorage.setItem('webKey', String(i)) }>
                <Link to={item.path}>
-                 <HomeOutlined/>
+                 <item.icon/>
                  <span className="nav-text">{item.title}</span>
                </Link>
              </Menu.Item>
