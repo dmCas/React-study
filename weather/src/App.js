@@ -7,14 +7,11 @@ import routes from './Router/web.js'
 
 function App() {
   return (
-    // <Router>
-    //   <div>
-    //     <Route path={routes.path} component={routes.component}></Route>
-    //   </div>
-    // </Router>
-    <div>
-      1
-    </div>
+    <Router>
+      <div>
+        <Route path={routes.path} component={routes.component}></Route>
+      </div>
+    </Router>
   );
 }
 
