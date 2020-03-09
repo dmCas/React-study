@@ -30,6 +30,12 @@ const App = (props) => {
   )
 }
 
+// const test = () => {
+//   return (
+//     <div>{x}, {y}</div>
+//   )
+// }
+
 const AppWithMouse = withMosu(App) // 高阶组件替组件干活
 
 export default AppWithMouse 
