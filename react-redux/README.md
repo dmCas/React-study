@@ -16,3 +16,12 @@
 2. store.dispatch 派发action
 3. store.getState 获取store里面所有的数据
 4. store.subscribe 订阅store数据的改变
+
+# UI组件与容器组件
+UI组件： 渲染页面 -> 一般定义成无状态组件 function
+容器组件： 逻辑操作
+
+# 无状态组件
+
+# Redux中发送异步请求获取数据
+
