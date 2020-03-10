@@ -5,11 +5,9 @@ const defaultState = {
   list: []
 }
 
-//state 指的是 stroe里面上一次存储的数据
+// state 指的是 stroe里面上一次存储的数据
+// 纯函数指的是，给定固定的输入，就一定会有固定的输出，而不会有任何副作用
 export default (state = defaultState, action) => {
-  const a = () => {
-    console.log(54321)
-  }
   if(action.type === CHANGE_INPUT_VALUE){
     const newState = JSON.parse(JSON.stringify(state))
     newState.inputValue = action.value
@@ -17,13 +15,12 @@ export default (state = defaultState, action) => {
   }
   if(action.type === ADD_TODO_LIST){
     const newState = JSON.parse(JSON.stringify(state))
-    //重写list方法
-    console.log(newState.inputValue)
+    // console.log(newState.inputValue)
     if(newState.inputValue===''){
       return newState
     }
     newState.list.push(newState.inputValue)
-    console.log(newState.list)
+    // console.log(newState.list)
     newState.inputValue = ''
     return newState
   }

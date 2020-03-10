@@ -3,8 +3,8 @@ import React, { Component } from 'react'
 import { Input, Button, List} from 'antd'
 import 'antd/dist/antd.css'
 import store from './store/index.js'
-import {CHANGE_INPUT_VALUE, ADD_TODO_LIST, DELETE_TODO_ITEM } from './store/actionTypes.js'
-
+// import {CHANGE_INPUT_VALUE, ADD_TODO_LIST, DELETE_TODO_ITEM } from './store/actionTypes.js'
+import { getInputChangeAction, getAddAction, getDeleteItemAction } from './store/actionCreators'
 
 // store 的创建
 
@@ -21,10 +21,11 @@ class TodoList extends Component {
 
   handleInputChange (e) {
     // 将input输入的内容存到仓库
-    const action = {
-      type: CHANGE_INPUT_VALUE,
-      value: e.target.value
-    }
+    // const action = {
+    //   type: CHANGE_INPUT_VALUE,
+    //   value: e.target.value
+    // }
+    const action = getInputChangeAction(e.target.value)
     store.dispatch(action) // 让管理员听到这句话
   }
 
@@ -35,18 +36,20 @@ class TodoList extends Component {
 
   handleBtnSubmit(){
     console.log('store change')
-    const action = {
-      type: ADD_TODO_LIST
-    }
+    // const action = {
+    //   type: ADD_TODO_LIST
+    // }
+    const action = getAddAction()
     store.dispatch(action)
   }
 
   handleItemDelete(index){
     console.log(index)
-    const action = {
-      type: DELETE_TODO_ITEM,
-      index
-    }
+    // const action = {
+    //   type: DELETE_TODO_ITEM,
+    //   index
+    // }
+    const action = getDeleteItemAction(index)
     store.dispatch(action)
   }
   render() {
