@@ -4,7 +4,7 @@ import React, { Component } from 'react'
 import 'antd/dist/antd.css'
 import store from './store/index.js'
 // import {CHANGE_INPUT_VALUE, ADD_TODO_LIST, DELETE_TODO_ITEM } from './store/actionTypes.js'
-import { getInputChangeAction, getAddAction, getDeleteItemAction, initListAction } from './store/actionCreators'
+import { getInitList, getInputChangeAction, getAddAction, getDeleteItemAction, initListAction, getTodoList } from './store/actionCreators'
 import TodoListUI from './TodoListUI'
 import axios from 'axios'
 // store 的创建
@@ -22,15 +22,25 @@ class TodoList extends Component {
   }
 
   componentDidMount () {
-    axios.get('https://api.github.com/users/octocat/gists').then(
-      (res) => {
-        console.log(res)
-        const data = res.data 
-        const action = initListAction(Object.keys(data[0].owner))
-        store.dispatch(action)
-        console.log(action)
-      }
-    )
+    // ---------- 原始做法 代码臃肿
+    // axios.get('https://api.github.com/users/octocat/gists').then(
+    //   (res) => {
+    //     const data = res.data 
+    //     const action = initListAction(Object.keys(data[0].owner))
+    //     console.log(action)
+    //     store.dispatch(action)
+    //   }
+    // )
+    // ----------- redux-thunk 中间件
+    // const action = getTodoList()
+    // // store-thunk调用这个方法的同时将dispatch这个功能交给这个方法
+    // store.dispatch(action) // 因为此刻的store已经集成的thunk的功能，所以可以直接dispatch一个函数交给store处理
+    
+
+    // ---------- redux saga 中间件
+    const action = getInitList()
+    store.dispatch(action)
+    console.log(action)
   }
 
   handleInputChange (e) {

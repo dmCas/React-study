@@ -25,3 +25,9 @@ UI组件： 渲染页面 -> 一般定义成无状态组件 function
 
 # Redux中发送异步请求获取数据
 
+# redux-thunk ajax数据请求
+
+# 什么是 Redux 中间件
+
+# redux-saga 中间件 ajax数据请求
+
