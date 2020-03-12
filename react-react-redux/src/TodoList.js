@@ -19,11 +19,11 @@ class TodoList extends Component {
     return (
       <div>
         <div>
-          <input value={this.props.inputValue} onChange={this.props.changeInputValue}/>
+          <input onChange={this.props.changeInputValue}/>
           <button>提交</button> 
         </div>
         <ul>
-          <li>Dell</li>
+          <li>{this.props.list}</li>
         </ul>
       </div>
     )
@@ -33,7 +33,8 @@ class TodoList extends Component {
 // 遍历state里面的所有数据给到props
 const mapStateToProps = (state) => {
   return {
-    inputValue: state.inputValue
+    inputValue: state.inputValue,
+    list: state.list
   }
 }
 
@@ -44,6 +45,7 @@ const mapDispatchToProps = (dispatch) => { // 把store.dispatch 挂载到props�
         type : 'change_input_value',
         value: e.target.value
       }
+      console.log(action)
       // const action = getChangeInputAction(e.target.value)
       dispatch(action)
     }
