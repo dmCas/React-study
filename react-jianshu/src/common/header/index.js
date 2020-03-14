@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { CSSTransition } from 'react-transition-group'
+import connect from 'react-redux'
 
 import { HeaderWrapper,
         Logo,
@@ -64,4 +65,15 @@ class Header extends Component {
   }
 }
 
-export default Header
+//取store数据 将仓库中store映射到props
+const mapStateToProps = (state) => {
+  return {
+
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header)
