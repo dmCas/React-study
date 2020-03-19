@@ -64,3 +64,23 @@ export default connect(mapStateToProps, mapDispatchToProps)(Header)
 ## import { fromJS } from 'immutable'
 >immutable对象是不可直接赋值的对象，它可以有效的避免错误赋值的问题
   fromJS将一个JS对象变为immutable对象
+
+## 动态添加背景图
+```
+//组件中
+<RecommendWrapper>
+  <RecommendItem imgUrl="http://cdn2.jianshu.io/assets/web/banner-s-club-aa8bdf19f8cf729a759da42e4a96f366.png">
+  </RecommendItem>
+  <RecommendItem imgUrl="http://cdn2.jianshu.io/assets/web/banner-s-7-1a0222c91694a1f38e610be4bf9669be.png">
+  </RecommendItem>
+</RecommendWrapper>
+// style.js
+export const RecommendItem = styled.div`
+  width: 280px;
+  height: 50px;
+  border-radius: 4px;
+  margin-bottom: 6px;
+  background: url(${props => props.imgUrl});
+  background-size: contain;
+`
+```

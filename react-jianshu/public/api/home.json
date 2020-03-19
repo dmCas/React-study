@@ -1,0 +1,61 @@
+{
+  "success": true,
+  "data": {
+    "topicList": [
+      {
+        "id": 1,
+        "title": "社会热点",
+        "imgUrl": "https://upload.jianshu.io/users/upload_avatars/9988193/fc26c109-1ae6-4327-a298-2def343e9cd8.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/96/h/96/format/webp"
+      },
+      {
+        "id": 2,
+        "title": "手绘",
+        "imgUrl": "https://upload.jianshu.io/users/upload_avatars/3950651/acfaa0ce-42fe-424a-b7c8-9a0136fb96ec.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/96/h/96/format/webp"
+      }
+    ],
+    "articleList": [
+      {
+        "id": 1,
+        "title": "我看到了妻子的另一面",
+        "desc": "父母永远都是孩子最亲近的人，特别是妈妈从怀孕到生孩子这个过程，她们给了孩子生命，同时也时刻守护着孩子们的成长。 绝大多数情况下，妈妈和孩子都是最...",
+        "imgUrl": "https://upload-images.jianshu.io/upload_images/14805474-d0c2e5243e2c9d41.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/360/h/240"
+      },
+      {
+        "id": 2,
+        "title": "一个人是否值得交往，看这四点就够了",
+        "desc": "有人说：“不必把太多人请进生命里，若他们走进不了你的内心，就只会把你的生命搅扰得拥挤不堪。” 朋友不必多，贵在能知心。珍贵的情谊，要留给最值得结...",
+        "imgUrl": "https://upload-images.jianshu.io/upload_images/14805474-d0c2e5243e2c9d41.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/360/h/240"
+      },
+      {
+        "id": 3,
+        "title": "“因为10个口罩，我看到了妻子的另一面，终止了两年的婚外恋”",
+        "desc": "01 作家詹迪·尼尔森曾说：“遇见灵魂伴侣的感觉，就好像是走进一座你曾经住过的房子里——你认识那些家具，认识墙上的画，架上的书，抽屉里的东西：如...",
+        "imgUrl": "https://upload-images.jianshu.io/upload_images/14805474-d0c2e5243e2c9d41.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/360/h/240"
+      },
+      {
+        "id": 4,
+        "title": "“因为10个口罩，我看到了妻子的另一面，终止了两年的婚外恋”",
+        "desc": "01 作家詹迪·尼尔森曾说：“遇见灵魂伴侣的感觉，就好像是走进一座你曾经住过的房子里——你认识那些家具，认识墙上的画，架上的书，抽屉里的东西：如...",
+        "imgUrl": "https://upload-images.jianshu.io/upload_images/14805474-d0c2e5243e2c9d41.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/360/h/240"
+      }
+    ],
+    "recommendList": [
+      {
+        "id": 1,
+        "imgUrl": "http://cdn2.jianshu.io/assets/web/banner-s-club-aa8bdf19f8cf729a759da42e4a96f366.png"
+      },
+      {
+        "id": 2,
+        "imgUrl": "http://cdn2.jianshu.io/assets/web/banner-s-7-1a0222c91694a1f38e610be4bf9669be.png"
+      },
+      {
+        "id": 3,
+        "imgUrl":"http://cdn2.jianshu.io/assets/web/banner-s-5-4ba25cf5041931a0ed2062828b4064cb.png"
+      },
+      {
+        "id": 4,
+        "imgUrl":"http://cdn2.jianshu.io/assets/web/banner-s-6-c4d6335bfd688f2ca1115b42b04c28a7.png"
+      }
+    ]
+  }
+}
