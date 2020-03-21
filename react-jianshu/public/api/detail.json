@@ -1,0 +1,7 @@
+{
+  "success": true,
+  "data": {
+    "title": "Redux中间件之redux-thunk使用详解",
+    "content":"<img alt='' src='http://upload-images.jianshu.io/upload_images/12577968-cdb894239d82ade1.jpg?imageMogr2/auto-orient/strip|imageView2/2/w/500/format/webp' /><p>Redux的核心概念其实很简单：将需要修改的state都存入到store里，发起一个action用来描述发生了什么，用reducers描述action如何改变state tree 。创建store的时候需要传入reducer，真正能改变store中数据的是store.dispatch API。</p><p>dispatch一个action之后，到达reducer之前，进行一些额外的操作，就需要用到middleware。你可以利用 Redux middleware 来进行日志记录、创建崩溃报告、调用异步接口或者路由等等。换言之，中间件都是对store.dispatch()的增强</p>"
+  }
+}

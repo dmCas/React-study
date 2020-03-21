@@ -87,3 +87,6 @@ export const RecommendItem = styled.div`
 
 ## 回到顶部
 > window.scrollTo(0,0)
+
+## 标签不被转义为字符串（数据存储HTML标签）
+> 使用该标签 <Content dangerouslySetInnerHTML={{__html:this.props.content}}></Content>

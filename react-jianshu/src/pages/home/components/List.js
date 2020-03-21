@@ -12,11 +12,13 @@ class List extends Component {
           this.props.articleList.map((item,index) => {
             return (
               <ListItem key={index}>
+                <a href="/detail">
                 <img className="pic" src={item.get('imgUrl')} alt="" />
                 <ListInfo>
                   <h3 className="title">{item.get('title')}</h3>
                   <p className="desc">{item.get('desc')}</p>
                 </ListInfo>
+                </a>
               </ListItem>
             )
           })
