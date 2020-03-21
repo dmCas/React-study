@@ -84,3 +84,6 @@ export const RecommendItem = styled.div`
   background-size: contain;
 `
 ```
+
+## 回到顶部
+> window.scrollTo(0,0)

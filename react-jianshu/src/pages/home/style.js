@@ -72,6 +72,7 @@ export const ListInfo = styled.div`
     font-size: 18px;
     line-height: 27px;
     font-weight: bold;
+    margin-bottom: 15px;
   }
   .desc{
     font-size: 13px;
@@ -99,5 +100,29 @@ export const WriterWrapper = styled.div`
   border-radius: 3px;
   height: 300px;
   line-height: 300px;
+  text-align: center;
+`
+
+export const LoadMore = styled.div`
+  width: 100%;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  background-color: #a5a5a5;
+  border-radius: 20px;
+  color: white;
+  margin: 30px 0 ;  
+  cursor: pointer;
+`
+
+export const BackTop = styled.div`
+  position: fixed;
+  right: 30px;
+  bottom: 30px;
+  width: 60px;
+  height: 60px;
+  line-height: 60px;
+  border: 1px solid #ccc;
+  font-size: 12px;
   text-align: center;
 `

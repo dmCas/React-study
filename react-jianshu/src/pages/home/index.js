@@ -5,25 +5,30 @@ import Recommend from './components/Recommend'
 import Writer from './components/Writer'
 import { HomeWrapper, 
          HomeLeft, 
-         HomeRight 
+         HomeRight,
+         BackTop 
        } from './style'
-import axios from 'axios'
+import { actionCreators } from './store'
 import { connect } from 'react-redux'
 
 class Home extends Component {
   componentDidMount () {
-    axios.get('/api/home.json').then((res) => {
-      const result = res.data.data
-      const action = {
-        type: 'change_home_data',
-        topicList: result.topicList,
-        article: result.articleList,
-        recommendList: result.recommendList
-      }
-      console.log(action.article)
-      this.props.changeHomeData(action)
-    })
+    this.props.changeHomeData()
+    this.bindEvents()
   }
+
+  bindEvents(){
+    window.addEventListener('scroll', this.props.changeScrollTopShow)
+  }
+
+  handleScrollTop () {
+    window.scrollTo(0,0)
+  }
+
+  componentWillMount() {
+    window.removeEventListener('scroll', this.props.changeScrollTopShow)
+  }
+
   render () {
     return (
       <HomeWrapper>
@@ -36,17 +41,36 @@ class Home extends Component {
           <Recommend />
           <Writer />
         </HomeRight>
+        {
+          this.props.showScroll ? <BackTop onClick={this.handleScrollTop}>回到顶部</BackTop> : null
+        }
       </HomeWrapper>
     )
   }
 }
 
+const mapState = (state) => ({
+  showScroll: state.home.get('showScroll')
+})
+
 const mapDispatch = (dispatch) => {
   return {
-    changeHomeData(action){
+    changeHomeData(){
+      const action = actionCreators.getHomeInfo()
+      //只有使用中间件才能dispatch一个函数
       dispatch(action)
+    },
+    changeScrollTopShow(e) {
+      if (document.documentElement.scrollTop > 100){
+        dispatch(actionCreators.toggleShow(true))
+      }
+      else{
+        dispatch(actionCreators.toggleShow(false))
+      }
+      console.log(document.documentElement.scrollTop)
     }
   }
 }
 
-export default connect(null, mapDispatch)(Home)
+
+export default connect(mapState, mapDispatch)(Home)
