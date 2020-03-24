@@ -14,6 +14,7 @@ import { HeaderWrapper,
       }from './style'
 
 const Header = (props) =>  {
+    const { login } = props
     return (
       <HeaderWrapper >
         <Logo />
@@ -22,7 +23,9 @@ const Header = (props) =>  {
             <a href="/" className="active">首页</a>
           </NavItem>
           <NavItem className="left">下载APP</NavItem>
-          <NavItem className="right">登录</NavItem>
+          <NavItem className="right">
+            {login ? <a>退出</a> : <a href="/login">登录</a>}
+          </NavItem>
           <NavItem className="right">
             <span className="iconfont">&#xe698;</span>
           </NavItem>
@@ -51,7 +54,8 @@ const Header = (props) =>  {
 //取store数据 将仓库中store映射到props
 const mapStateToProps = (state) => {
   return {
-    focused: state.header.focused
+    focused: state.header.get('focused'),
+    login: state.login.get('login')
   }
 }
 

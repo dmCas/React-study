@@ -7,9 +7,11 @@ const changeDetail = (title, content) => ({
   content
 })
 
-export const getDetail = () => {
+export const getDetail = (id) => {
+  // Vue 写法
+  // this.$router.push({ path: '/detail', param={}})
   return (dispatch) => {
-    axios.get('/api/detail.json').then(res=> {
+    axios.get('/api/detail.json?id='+id).then(res=> {
       console.log(res.data.data)
       const result = res.data.data
       dispatch(changeDetail(result.title, result.content))

@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { ListItem, ListInfo, LoadMore } from '../style'
 import { connect } from 'react-redux'
-import * as actionCreators from '../store/actionCreators'
+import { actionCreators } from '../store'
+import { Link } from 'react-router-dom'
 
 class List extends Component {
   render() {
@@ -9,17 +10,20 @@ class List extends Component {
     return (
       <div>
         {
-          this.props.articleList.map((item,index) => {
+          this.props.articleList.map((item, index) => {
             return (
-              <ListItem key={index}>
-                <a href="/detail">
-                <img className="pic" src={item.get('imgUrl')} alt="" />
-                <ListInfo>
-                  <h3 className="title">{item.get('title')}</h3>
-                  <p className="desc">{item.get('desc')}</p>
-                </ListInfo>
-                </a>
-              </ListItem>
+              <Link key={index} to={"/detail/" + item.get('id')}>
+              {/*  <Link key={index} to={"/detail?id=" + item.get('id')}> */}
+                <ListItem>
+                  {/* <a href="/detail"> */}
+                  <img className="pic" src={item.get('imgUrl')} alt="" />
+                  <ListInfo>
+                    <h3 className="title">{item.get('title')}</h3>
+                    <p className="desc">{item.get('desc')}</p>
+                  </ListInfo>
+                  {/* </a> */}
+                </ListItem>
+              </Link>
             )
           })
         }
@@ -38,7 +42,7 @@ const mapState = (state) => (
 
 // 加载更多需要ajax接口异步请求
 const mapDispatch = (dispatch) => ({
-  getMoreList (page) {
+  getMoreList(page) {
     dispatch(actionCreators.getMoreList(page))
   }
 })

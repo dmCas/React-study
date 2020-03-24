@@ -97,6 +97,7 @@ export const SearchWrapper = styled.div `
     line-height: 30px;
     background-color: none;
     text-align: center;
+    color:white
     &.focused{
       background-color: #777;
       color: #fff;

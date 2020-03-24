@@ -7,11 +7,12 @@ import {
   Content
 } from './style'
 class Detail extends Component {
-  componentWillMount() {
-    this.props.getDetail()
+  componentDidMount() {
+    this.props.getDetail(this.props.match.params.id)
   }
 
   render() {
+    console.log(this.props.location.search)
     return (
       <DetailWrapper >
         <Header>{this.props.title}</Header>
@@ -28,8 +29,8 @@ const mapState = (state) => ({
 })
 
 const mapDispatch = (dispatch) => ({
-  getDetail() {
-    dispatch(actionCreators.getDetail())
+  getDetail(id) {
+    dispatch(actionCreators.getDetail(id))
   }
 })
 
