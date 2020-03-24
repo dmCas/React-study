@@ -90,3 +90,6 @@ export const RecommendItem = styled.div`
 
 ## 标签不被转义为字符串（数据存储HTML标签）
 > 使用该标签 <Content dangerouslySetInnerHTML={{__html:this.props.content}}></Content>
+
+## react-loadable
+> 异步组件加载 解决单页面应用首次加载速度慢（按需加载）

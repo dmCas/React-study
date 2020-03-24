@@ -2,7 +2,8 @@ import React from 'react'
 import { CSSTransition } from 'react-transition-group'
 import { connect } from 'react-redux'
 import { actionCreator } from './store'
-// import { BrowserRouter, Link } from 'react-router-dom'
+import { actionCreators as LoginActionCreators} from '../../pages/login/store'
+import { Link } from 'react-router-dom'
 import { HeaderWrapper,
         Logo,
         Nav,
@@ -14,7 +15,7 @@ import { HeaderWrapper,
       }from './style'
 
 const Header = (props) =>  {
-    const { login } = props
+    const { login, logout } = props
     return (
       <HeaderWrapper >
         <Logo />
@@ -23,9 +24,12 @@ const Header = (props) =>  {
             <a href="/" className="active">首页</a>
           </NavItem>
           <NavItem className="left">下载APP</NavItem>
-          <NavItem className="right">
-            {login ? <a>退出</a> : <a href="/login">登录</a>}
-          </NavItem>
+         
+            {
+              login ? <NavItem onClick={logout} className="right">退出</NavItem>
+              : <Link to="/login"><NavItem className="right">登录</NavItem></Link>
+            }
+          
           <NavItem className="right">
             <span className="iconfont">&#xe698;</span>
           </NavItem>
@@ -44,7 +48,9 @@ const Header = (props) =>  {
           </SearchWrapper>
         </Nav>
         <Addition>
-          <Button className="writting"><span className="iconfont">&#xe62e;</span>写文章</Button>
+          <Link to="/write">
+            <Button className="writting"><span className="iconfont">&#xe62e;</span>写文章</Button>
+          </Link>
           <Button className="reg">注册</Button>
         </Addition>
       </HeaderWrapper>
@@ -69,6 +75,9 @@ const mapDispatchToProps = (dispatch) => {
     handleInputBlur() {
       const action = actionCreator.searchBlur()
       dispatch(action)
+    },
+    logout() {
+      dispatch(LoginActionCreators.login_off())
     }
   }
 }
