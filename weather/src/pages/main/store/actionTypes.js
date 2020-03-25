@@ -1,0 +1,1 @@
+export const CURRENT_CITY = 'CURRENT_CITY'

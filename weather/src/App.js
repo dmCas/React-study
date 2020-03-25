@@ -1,17 +1,20 @@
 import React from 'react';
-import { BrowserRouter as Router , Route, Link, Redirect } from 'react-router-dom' 
+import { BrowserRouter as Router , Route} from 'react-router-dom' 
 import './App.css';
-import {  Button } from 'antd'
 import 'antd/dist/antd.css'
-import routes from './Router/web.js'
+import MainPage from './pages/main'
+import { Provider } from 'react-redux'
+import store from './store'
 
 function App() {
   return (
-    <Router>
-      <div>
-        <Route path={routes.path} component={routes.component}></Route>
-      </div>
-    </Router>
+    <Provider store={store}>
+      <Router>
+        <div>
+          <Route path='/' component={MainPage}></Route>
+        </div>
+      </Router>
+    </Provider>
   );
 }
 
