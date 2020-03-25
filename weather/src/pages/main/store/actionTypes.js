@@ -1,1 +1,2 @@
 export const CURRENT_CITY = 'CURRENT_CITY'
+export const CURRENT_WEATHER = 'CURRENT_WEATHER'

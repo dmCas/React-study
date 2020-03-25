@@ -1,0 +1,23 @@
+{
+  "id": "1714637",
+  "name": "weather",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "10836545",
+      "name": "叶子",
+      "font_class": "yezi",
+      "unicode": "e663",
+      "unicode_decimal": 58979
+    },
+    {
+      "icon_id": "12924200",
+      "name": "口罩",
+      "font_class": "kouzhao",
+      "unicode": "e640",
+      "unicode_decimal": 58944
+    }
+  ]
+}
