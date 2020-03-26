@@ -7,16 +7,19 @@ import {
   Header,
   Temperature,
   Extra,
-  Forecast,
-  Current,
-  Next
+  Echartcontaier
 } from './style'
 import { CaretDownOutlined } from '@ant-design/icons';
 import { Tag } from 'antd'
 import WeatherCircle from './component/cloudy'
 
 class Home extends Component {
-
+  constructor(props){
+    super(props)
+    this.state = {
+      foreData : []
+    }
+  }
   initWeather(city) {
     let _self = this
     //eslint-disable-next-line
@@ -29,7 +32,12 @@ class Home extends Component {
         _self.props.getWeather(data)
       });
       weather.getForecast(city, function(err, data) {
-        console.log(err, data);
+        data.forecasts.map((item) => {
+          _self.state.foreData.push(item.dayTemp)
+        })
+        console.log(_self.state.foreData)
+        _self.initEchart(_self.state.foreData)
+        // _self.props.getForecast(data.forecasts)
       });
     });
   }
@@ -49,14 +57,60 @@ class Home extends Component {
         }
       })
     })
+    
   }
-
+  initEchart(array){
+    console.log(array)
+    let domChart = this.dom;
+    //eslint-disable-next-line
+    var myChart = echarts.init(domChart);
+    let app = {},option = null;
+    option = {
+      xAxis: {
+        show: false,
+        type: "category",
+        axisLine: {
+          lineStyle: {
+            color: "#fff"
+          }
+        }
+      },
+      yAxis: {
+        show: false,
+        axisTick: {
+          show: false,
+          lineStyle: {
+            color: "#fff"
+          }
+        },
+        axisTick: { show: true },
+        splitLine: { show: false }
+      },
+      series: [
+        {
+          data: array,
+          type: "line"
+        }
+      ],
+      tooltip: {
+        trigger: "axis",
+        formatter: function(params) {
+          var relVal = params[0].name;
+          for (let i = 0, l = params.length; i < l; i++) {
+            relVal += params[i].value + "℃";
+          }
+          return relVal;
+        }
+      }
+    }
+    myChart.setOption(option, true);
+  }
 
   render() {
     // console.log(this.props.weatherData)
     const { city, weatherData } = this.props
     return (
-      <HomeWrapper imgUrl={require('../../static/img/1.jpg')}>
+      <HomeWrapper imgUrl={require('../../static/img/4.jpg')}>
         <Header><span>{city}</span><CaretDownOutlined /></Header>
         <Temperature>
           <h2>{weatherData.temperature}°</h2>
@@ -71,22 +125,9 @@ class Home extends Component {
               <dt>风力：{weatherData.windPower} | 风向： {weatherData.windDirection} | 空气湿度： {weatherData.humidity}%</dt>
             </dl>
           </Extra>
-          <Forecast>
-            <Current>
-              <div className="left">
-                <p>今天</p>
-                <p>中雨</p>
-              </div>
-              <div className="right">
-                <p>今天</p>
-                <p><img src={require('../../static/img/qing.png')} alt=""></img></p>
-              </div>
-            </Current>
-            <Next>
-            </Next>
-          </Forecast>
         </Temperature>
         <WeatherCircle />
+        <Echartcontaier ref={(echart) => {this.dom = echart}}></Echartcontaier>
       </HomeWrapper>
     )
   }
@@ -94,7 +135,8 @@ class Home extends Component {
 
 const mapState = (state) => ({
   city: state.home.get('city'),
-  weatherData: state.home.get('weatherData')
+  weatherData: state.home.get('weatherData'),
+  forecast: state.home.get('forecast')
 })
 
 
@@ -104,6 +146,9 @@ const mapDispatch = (dispatch) => ({
   },
   getWeather(data) {
     dispatch(actionCreators.getWeather(data))
+  },
+  getForecast(data) {
+    dispatch(actionCreators.getForecast(data))
   }
 })
 

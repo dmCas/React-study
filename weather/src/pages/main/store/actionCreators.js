@@ -11,6 +11,11 @@ const weatherApi = (data) => ({
   weatherData: data
 })
 
+const forecastApi = (data) => ({
+  type: actionTypes.FORECAST_WEATHER,
+  forecast: data
+})
+
 export const getCity = (city) => {
   return (dispatch) => {
     const action = cityApi(city)
@@ -21,6 +26,13 @@ export const getCity = (city) => {
 export const getWeather = (data) => {
   return (dispatch) => {
     const action = weatherApi(data)
+    dispatch(action)
+  }
+}
+
+export const getForecast = (data) => {
+  return (dispatch) => {
+    const action = forecastApi(data)
     dispatch(action)
   }
 }
