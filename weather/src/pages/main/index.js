@@ -7,17 +7,21 @@ import {
   Header,
   Temperature,
   Extra,
-  Echartcontaier
+  Echartcontaier,
+  MoreInfo,
+  MoreWrapper,
+  MoreDay
 } from './style'
 import { CaretDownOutlined } from '@ant-design/icons';
 import { Tag } from 'antd'
 import WeatherCircle from './component/cloudy'
 
 class Home extends Component {
-  constructor(props){
+  constructor(props) {
     super(props)
     this.state = {
-      foreData : []
+      foreData: [],
+      preWeather:[]
     }
   }
   initWeather(city) {
@@ -31,11 +35,14 @@ class Home extends Component {
         // console.log(err, data);
         _self.props.getWeather(data)
       });
-      weather.getForecast(city, function(err, data) {
+      weather.getForecast(city, function (err, data) {
+        _self.setState({
+          preWeather: data.forecasts
+        })
         data.forecasts.map((item) => {
           _self.state.foreData.push(item.dayTemp)
         })
-        console.log(_self.state.foreData)
+        console.log(_self.state.preWeather)
         _self.initEchart(_self.state.foreData)
         // _self.props.getForecast(data.forecasts)
       });
@@ -57,15 +64,22 @@ class Home extends Component {
         }
       })
     })
-    
+
   }
-  initEchart(array){
-    console.log(array)
+  initEchart(array) {
     let domChart = this.dom;
     //eslint-disable-next-line
     var myChart = echarts.init(domChart);
-    let app = {},option = null;
+    let option = null;
     option = {
+      title : {
+        show:true,//显示策略，默认值true,可选为：true（显示） | false（隐藏）
+        text: '天气变化趋势',//主标题文本，'\n'指定换行
+        textStyle: { //图例文字的样式
+          color: 'grey',
+        },
+        padding: [0,0,30,10]
+      },
       xAxis: {
         show: false,
         type: "category",
@@ -76,39 +90,34 @@ class Home extends Component {
         }
       },
       yAxis: {
-        show: false,
-        axisTick: {
-          show: false,
-          lineStyle: {
-            color: "#fff"
-          }
-        },
-        axisTick: { show: true },
-        splitLine: { show: false }
+        show: false
       },
       series: [
         {
           data: array,
-          type: "line"
-        }
-      ],
-      tooltip: {
-        trigger: "axis",
-        formatter: function(params) {
-          var relVal = params[0].name;
-          for (let i = 0, l = params.length; i < l; i++) {
-            relVal += params[i].value + "℃";
+          type: "line",
+          itemStyle: {
+            normal:
+            {
+              label: {
+                show: true,
+                formatter: "{c}℃"
+              },
+              lineStyle:{
+                color:'white' //改变折线颜色
+              },
+              color: '#eee'
+            },
           }
-          return relVal;
         }
-      }
+      ]
     }
     myChart.setOption(option, true);
   }
-
   render() {
-    // console.log(this.props.weatherData)
     const { city, weatherData } = this.props
+    console.log(this.state.preWeather)
+    // console.log(this.props)
     return (
       <HomeWrapper imgUrl={require('../../static/img/4.jpg')}>
         <Header><span>{city}</span><CaretDownOutlined /></Header>
@@ -127,7 +136,18 @@ class Home extends Component {
           </Extra>
         </Temperature>
         <WeatherCircle />
-        <Echartcontaier ref={(echart) => {this.dom = echart}}></Echartcontaier>
+        <MoreInfo>
+          <MoreWrapper>
+            {
+              this.state.preWeather.map((item) => (
+                <MoreDay key={item.date}>
+                  <p>{item.date.substring(5)}</p>
+                </MoreDay>
+              ))
+            }
+          </MoreWrapper>
+        </MoreInfo>
+        <Echartcontaier ref={(echart) => { this.dom = echart }}></Echartcontaier>
       </HomeWrapper>
     )
   }
