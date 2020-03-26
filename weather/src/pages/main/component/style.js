@@ -16,7 +16,7 @@ export const Cloudy = styled.div`
   width: 20px;
   height: 6px;
   border-radius: 4px;
-  background-color: #fff;
+  background-color: #eee;
   box-shadow: 0 0 4px 2px #e6e8db,0 0 20px -2px #c9e8de;
   animation: move 4000ms infinite ease-in-out;
   }

@@ -3,6 +3,7 @@ import { BrowserRouter as Router , Route} from 'react-router-dom'
 import './App.css';
 import 'antd/dist/antd.css'
 import MainPage from './pages/main'
+import SearchCity from './pages/search'
 import { Provider } from 'react-redux'
 import store from './store'
 
@@ -11,7 +12,8 @@ function App() {
     <Provider store={store}>
       <Router>
         <div>
-          <Route path='/' component={MainPage}></Route>
+          <Route exact path='/' component={MainPage}></Route>
+          <Route exact path='/search' component={SearchCity}></Route>
         </div>
       </Router>
     </Provider>

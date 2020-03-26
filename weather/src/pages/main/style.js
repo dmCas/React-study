@@ -6,6 +6,9 @@ export const HomeWrapper = styled.div`
   background: url(${props => props.imgUrl});
   background-size: cover;
   color: white;
+  a{
+    color: #fff;
+  }
 `
 
 export const Header = styled.div`
@@ -15,6 +18,7 @@ export const Header = styled.div`
   font-weight: bold;
   span{
     margin-right: 5px;
+   
   }
 `
 
@@ -28,7 +32,8 @@ export const Temperature = styled.div`
     color: white;
   }
   span{
-    padding-right: 15px;
+    padding-right: 10px;
+    letter-spacing: 1px;
   }
 `
 
@@ -47,18 +52,32 @@ export const Echartcontaier = styled.div`
 `
 
 export const MoreInfo = styled.div`
-  padding: 40px 10px 130px 10px;
+  padding: 40px 10px 10px 10px;
+  img{
+    vertical-align: baseline;
+  }
 `
 export const MoreWrapper = styled.div`
-  padding-top: 20px;
+  padding-top: 10px;
   border-top: .5px solid hsla(0,0%,100%,.5);
   display: flex;
+  & :nth-last-of-type(1){
+    border: none;
+  }
 `
 export const MoreDay = styled.div`
   flex: 1;
   padding: 5px 10px;
   border-right: .5px solid hsla(0,0%,100%,.5);
   text-align: center;
+  p{
+    margin:0;
+    padding:0;
+  }
+  .temp{
+    padding: 10px 0 10px 8px;
+    display:inline-block;
+  }
   
 `
 export const ExtraDay = styled.div`

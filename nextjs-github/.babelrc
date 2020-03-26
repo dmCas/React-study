@@ -1,0 +1,9 @@
+// babel配置文件
+{
+  "presets": ["next/babel"],
+  "plugins": [
+    ["import", {
+      "libraryName": "antd"
+    }]
+  ]
+}
