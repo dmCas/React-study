@@ -1,5 +1,5 @@
 import React from 'react'
-import { Input, Button } from 'antd';
+import { Input, Button, Select } from 'antd';
 import { withRouter } from 'react-router-dom'
 import { 
         SearchWrapper,
@@ -13,12 +13,14 @@ import { connect } from 'react-redux'
 import * as actionCreators  from '../../store/actionCreators'
 import { Link } from 'react-router-dom'
 const { Search } = Input;
+const { Option } = Select;
 
 class SearchCity extends React.Component{
   constructor(props){
     super(props)
     this.state = {
-      hotcity: []
+      hotcity: [],
+      showsearch: []
     }
   }
 
@@ -32,12 +34,22 @@ class SearchCity extends React.Component{
     }
     fetchData()
   }
+
+  searchCity(value){
+    var tem = []
+    axios.get('/city/citylist.json').then((res) => {
+      this.tem = res.data.provinces.filter((item) => item.provinceName == value)
+      this.setState({
+        showsearch: this.tem[0].citys.slice(0,15)
+      })
+    })
+  }
   render(){
     return (
       <SearchWrapper>
         <Search
           placeholder="请输入城市名，快速查询天气信息"
-          onSearch={value => console.log(value)}
+          onSearch={value => this.searchCity(value)}
           style={{ width: '75%' }}
         />
         <Button>取消</Button>

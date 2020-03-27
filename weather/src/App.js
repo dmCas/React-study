@@ -6,6 +6,7 @@ import MainPage from './pages/main'
 import SearchCity from './pages/search'
 import { Provider } from 'react-redux'
 import store from './store'
+import Test from './pages/test';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <div>
           <Route exact path='/' component={MainPage}></Route>
           <Route exact path='/search' component={SearchCity}></Route>
+          <Route exact path='/test' component={Test}></Route>
         </div>
       </Router>
     </Provider>
