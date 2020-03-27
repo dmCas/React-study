@@ -28,11 +28,18 @@ export const TagWrapper = styled.div`
   line-height: 25px;
   background: #eee;
   font-size: 12px;
-  margin: 4px 2px 2px 0;
+  margin: 4px 6px 2px 0;
 `
 export const Tag = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  box-sizing: border-box;
+`
+export const His = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  /* justify-content: space-between; */
+  justify-content: flex-start;
   box-sizing: border-box;
 `

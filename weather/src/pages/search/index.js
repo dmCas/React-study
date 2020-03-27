@@ -5,7 +5,8 @@ import {
         SearchWrapper,
         Recommend,
         TagWrapper,
-        Tag
+        Tag,
+        His
        } from './style'
 import axios from 'axios'
 import { connect } from 'react-redux'
@@ -54,7 +55,7 @@ class SearchCity extends React.Component{
         </Recommend>
         <Recommend>
           <p>历史记录</p>
-          <Tag>
+          <His>
           {
             this.props.cityHistory.map((item) => (
               <Link key={item} to='/'>
@@ -62,7 +63,7 @@ class SearchCity extends React.Component{
               </Link>
             ))
           }
-          </Tag>
+          </His>
         </Recommend>
       </SearchWrapper>
     )
