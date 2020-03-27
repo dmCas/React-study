@@ -42,7 +42,7 @@ class Home extends Component {
         data.forecasts.map((item) => (
           _self.state.foreData.push(item.dayTemp)
         ))
-        console.log(_self.state.preWeather)
+        // console.log(_self.state.preWeather)
         _self.initEchart(_self.state.foreData)
         // _self.props.getForecast(data.forecasts)
       });
@@ -60,7 +60,7 @@ class Home extends Component {
           // 查询成功，result即为当前所在城市信息
           // this.getCity(result.city)
           _self.props.getCity(result.city)
-          _self.initWeather(result.city)
+          _self.initWeather(_self.props.city)
         }
       })
     })
@@ -121,7 +121,7 @@ class Home extends Component {
     const { city, weatherData } = this.props
     // console.log(this.state.preWeather)
     const reportTime = new String(weatherData.reportTime)
-    console.log(reportTime.split(' ')[1])
+    // console.log(reportTime.split(' ')[1])
     return (
       <HomeWrapper imgUrl={require('../../static/img/4.jpg')}>
         <Link to="/search">
@@ -141,7 +141,7 @@ class Home extends Component {
         <MoreInfo>
           <MoreWrapper>
             {
-              this.state.preWeather.slice(0,3).map((item) => (
+              this.state.preWeather.slice(1,4).map((item) => (
                 <MoreDay key={item.date}>
                   <p>{item.date.substring(5)}</p>
                   <img alt="" src={require('../../static/img/' + `${item.dayWeather}.png`)}></img>

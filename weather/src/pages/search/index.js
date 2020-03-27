@@ -8,6 +8,7 @@ import {
         Tag
        } from './style'
 import axios from 'axios'
+import { connect } from 'react-redux'
 const { Search } = Input;
 
 
@@ -22,6 +23,7 @@ function SearchCity() {
     fetchData()
   }, [])
 
+  // console.log(this.props)
   return (
     <SearchWrapper>
       <Search
@@ -35,7 +37,7 @@ function SearchCity() {
         <Tag>
         {
           hotcity.map((item) => (
-            <TagWrapper key={item}>{item}</TagWrapper>
+            <TagWrapper key={item} onClick={() => console.log(item)}>{item}</TagWrapper>
           ))
         }
         </Tag>
@@ -44,4 +46,9 @@ function SearchCity() {
   )
 }
 
-export default withRouter(SearchCity)
+
+const mapState= (state) => ({
+  city: state.home.get('city')
+})
+
+export default connect(mapState, null)(withRouter(SearchCity))

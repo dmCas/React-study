@@ -11,8 +11,21 @@ const handle = app.getRequestHandler()
 app.prepare().then(() => {
   // 创建koa服务
   const server = new Koa()
+  const router = new Router()
 
+  // 路由映射
+  router.get('/a/:id',  async (ctx) => {
+    const id = ctx.params.id
+    await handle(ctx.req, ctx.res,{
+      pathname: '/a',
+      query: {
+        id
+      }
+    })
+    ctx.respond = false
+  })
 
+  server.use(router.routes())
   // node一块的中间件...？
   // async await
   server.use(async (ctx, next) => { // 中间件就是一个函数

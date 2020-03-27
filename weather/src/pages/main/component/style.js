@@ -7,8 +7,8 @@ export const Cloudy = styled.div`
   width: 80px;
   height: 80px;
   border-radius: 100%;
-  background: linear-gradient(to top right, #1b9ce2 0, #e0e2e5 90%);
-  box-shadow: 0 0 0 1px #e6e8db ,0 0 10px -1px #c9e8de;
+  background: linear-gradient(to top right,#000000 0,#eee 90%);
+  box-shadow: 0 0 0 0.1px #280000, 0 0 10px -1px #C0C0C0;
   .cloud {
   position: absolute;
   top: 25%;
