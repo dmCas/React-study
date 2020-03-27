@@ -7,6 +7,9 @@ export const SearchWrapper = styled.div`
     right: 10px;
     position: absolute;
   }
+  a{
+    color: #000;
+  }
 `
 
 export const Recommend = styled.div`

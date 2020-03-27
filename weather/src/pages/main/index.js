@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { actionCreators } from './store'
+import * as actionCreators  from '../../store/actionCreators'
 import {
   HomeWrapper,
   Header,
@@ -51,20 +51,25 @@ class Home extends Component {
   componentDidMount() {
     // 防止作用域被修改
     let _self = this;
-    //eslint-disable-next-line
-    AMap.plugin('AMap.CitySearch', function () {
+    if(_self.props.init){
       //eslint-disable-next-line
-      var citySearch = new AMap.CitySearch()
-      citySearch.getLocalCity(function (status, result) {
-        if (status === 'complete' && result.info === 'OK') {
-          // 查询成功，result即为当前所在城市信息
-          // this.getCity(result.city)
-          _self.props.getCity(result.city)
-          _self.initWeather(_self.props.city)
-        }
+      AMap.plugin('AMap.CitySearch', function () {
+        //eslint-disable-next-line
+        var citySearch = new AMap.CitySearch()
+        citySearch.getLocalCity(function (status, result) {
+          if (status === 'complete' && result.info === 'OK') {
+            // 查询成功，result即为当前所在城市信息
+            // this.getCity(result.city)
+            _self.props.getCity(result.city)
+            _self.initWeather(_self.props.city)
+            _self.props.getInit()
+          }
+        })
       })
-    })
-
+    }
+    else{
+      _self.initWeather(_self.props.city)
+    }
   }
   initEchart(array) {
     let domChart = this.dom;
@@ -161,16 +166,22 @@ class Home extends Component {
   }
 }
 
-const mapState = (state) => ({
-  city: state.home.get('city'),
-  weatherData: state.home.get('weatherData'),
-  forecast: state.home.get('forecast')
-})
+const mapState = (state) => {
+  return ({
+    city: state.get('city'),
+    weatherData: state.get('weatherData'),
+    forecast: state.get('forecast'),
+    init: state.get('init')
+  })
+}
 
 
 const mapDispatch = (dispatch) => ({
   getCity(city) {
     dispatch(actionCreators.getCity(city))
+  },
+  getInit() {
+    dispatch(actionCreators.getInit())
   },
   getWeather(data) {
     dispatch(actionCreators.getWeather(data))
