@@ -1,10 +1,7 @@
-import React from 'react'
 import { Select } from 'antd';
-import querystring from 'querystring';
-import Axios from 'axios';
-
+import React from 'react'
+import axios from 'axios'
 const { Option } = Select;
-
 let timeout;
 let currentValue;
 
@@ -16,31 +13,15 @@ function fetch(value, callback) {
   currentValue = value;
 
   function fake() {
-    Axios.get('/city/citylist.json').then((res) => {
-      var showsearch = [], tem = []
-      tem = res.data.provinces.filter((item) => item.provinceName == value)
-      // this.setState({
-      //   showsearch: this.tem[0].citys.slice(0,15)
-      // })
-      console.log(tem[0])
-      showsearch = tem[0].citys
-      callback(showsearch);
-    })
-    // Axios.get('/city/citylist.json')
-    //   .then(response => response.json())
-    //   .then(d => {
-    //     if (currentValue === value) {
-    //       const { result } = d;
-    //       const data = [];
-    //       result.forEach(r => {
-    //         data.push({
-    //           value: r[0],
-    //           text: r[0],
-    //         });
-    //       });
-    //       callback(data);
-    //     }
-    //   });
+      axios.get('/city/citys.json').then((res) => {
+        var tem = []
+        tem = res.data.citys.filter((item) => item.citysName.includes(value))
+        // this.setState({
+        //   showsearch: this.tem[0].citys.slice(0,15)
+        // })
+        console.log(tem.slice(0,10))
+        callback(tem.slice(0,10))
+      })
   }
 
   timeout = setTimeout(fake, 300);
@@ -52,7 +33,6 @@ class SearchInput extends React.Component {
     value: undefined,
   };
 
-  
   handleSearch = value => {
     if (value) {
       fetch(value, data => this.setState({ data }));
@@ -62,22 +42,24 @@ class SearchInput extends React.Component {
   };
 
   handleChange = value => {
-    this.setState({ value });
+    this.setState({ value }); 
   };
 
   render() {
-    const options = this.state.data.map(d => <Option key={d.value}>{d.text}</Option>);
+    console.log(this.state.data)
+    const options = this.state.data.map(d => <Option key={d.id}>{d.citysName}</Option>);
     return (
       <Select
-        showSearch
+        showSearch 
         value={this.state.value}
-        placeholder={this.props.placeholder}
-        style={this.props.style}
-        size='large'
-        showArrow='false'
+        placeholder='请输入城市名，快速查询天气信息'
+        defaultActiveFirstOption='flase'
+        showArrow='true'
+        filterOption={false}
         onSearch={this.handleSearch}
         onChange={this.handleChange}
-        notFoundContent='Not Found'
+        notFoundContent={null}
+        style={{ width: '100%' }}
       >
         {options}
       </Select>
