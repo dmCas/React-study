@@ -1,7 +1,6 @@
 import React from 'react'
 
 class MyCount extends React.Component{
-  
   state = {
     count: 0
   }
@@ -11,11 +10,11 @@ class MyCount extends React.Component{
       this.setState({
         count: this.state.count + 1
       })
-    }, 1000)
+    }, 1000);
   }
 
-  componentWillMount() {
-    if(this.interval) {
+  componentWillUnmount() {
+    if (this.interval) {
       clearInterval(this.interval)
     }
   }

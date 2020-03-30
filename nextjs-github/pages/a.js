@@ -1,13 +1,36 @@
 import { withRouter } from 'next/router'
 import Link from 'next/link'
 import Comp from '../components/comp'
+import Head from 'next/head'
+import styled from 'styled-components'
 
-const A =  ({ router, name }) => <Comp>{router.query.id}{name}</Comp>
-// const A =  ({ router, name }) => <Link href="#aaa"><Comp>{router.query.id}{name}</Comp></Link>
+const Title = styled.h1`
+  color: yellow;
+  font-size:40px;
+`
+const color = '#113366'
 
-A.getInitialProps = async () => {
+const A = ({ router, name }) => (
+  <>
+    <Title>This is title</Title>
+    <Link href="#aaa">
+      <a className="link">{router.query.id}{name}</a>
+    </Link>
+
+    <style jsx>{`
+      a{
+        color: blue
+      }
+      .link {
+        color: ${color};
+      }
+    `}</style>
+  </>
+)
+
+A.getInitialProps = async(ctx) => {
+
   const promise = new Promise((resolve, reject) => {
-    // 一秒后路由跳转，只有数据请求到了才会进行路由跳转
     setTimeout(() => {
       resolve({
         name: 'wn'

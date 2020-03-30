@@ -15,7 +15,6 @@ function App() {
         <div>
           <Route exact path='/' component={MainPage}></Route>
           <Route exact path='/search' component={SearchCity}></Route>
-          <Route exact path='/test' component={Test}></Route>
         </div>
       </Router>
     </Provider>

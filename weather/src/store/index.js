@@ -6,7 +6,6 @@ const componentEnhanders = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compos
 
 const enhancer = componentEnhanders(
   applyMiddleware(thunk)
-  // applyMiddleware(sagaMiddleware)
 )
 const store = createStore(reducer, enhancer)
 

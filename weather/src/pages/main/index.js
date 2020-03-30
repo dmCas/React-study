@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
-import * as actionCreators  from '../../store/actionCreators'
+import * as actionCreators from '../../store/actionCreators'
 import {
   HomeWrapper,
   Header,
@@ -10,8 +10,11 @@ import {
   Echartcontaier,
   MoreInfo,
   MoreWrapper,
-  MoreDay
+  MoreDay,
+  Loading,
+  SpanWrapper
 } from './style'
+import { Spin } from 'antd';
 import { CaretDownOutlined } from '@ant-design/icons';
 import WeatherCircle from './component/cloudy'
 import { Link } from 'react-router-dom'
@@ -21,7 +24,8 @@ class Home extends Component {
     super(props)
     this.state = {
       foreData: [],
-      preWeather:[]
+      preWeather: [],
+      loading:true
     }
   }
   initWeather(city) {
@@ -44,6 +48,9 @@ class Home extends Component {
         ))
         // console.log(_self.state.preWeather)
         _self.initEchart(_self.state.foreData)
+        _self.setState({
+          loading: false
+        })
         // _self.props.getForecast(data.forecasts)
       });
     });
@@ -51,7 +58,7 @@ class Home extends Component {
   componentDidMount() {
     // 防止作用域被修改
     let _self = this;
-    if(_self.props.init){
+    if (_self.props.init) {
       //eslint-disable-next-line
       AMap.plugin('AMap.CitySearch', function () {
         //eslint-disable-next-line
@@ -67,7 +74,7 @@ class Home extends Component {
         })
       })
     }
-    else{
+    else {
       _self.initWeather(_self.props.city)
     }
   }
@@ -77,14 +84,14 @@ class Home extends Component {
     var myChart = echarts.init(domChart);
     let option = null;
     option = {
-      title : {
-        show:true,//显示策略，默认值true,可选为：true（显示） | false（隐藏）
+      title: {
+        show: true,//显示策略，默认值true,可选为：true（显示） | false（隐藏）
         text: '天气变化趋势',//主标题文本，'\n'指定换行
-        x:'center',
+        x: 'center',
         textStyle: { //图例文字的样式
           color: 'grey',
         },
-        padding: [5,0,30,10]
+        padding: [5, 0, 30, 10]
       },
       xAxis: {
         show: false,
@@ -94,8 +101,7 @@ class Home extends Component {
             color: "#fff"
           }
         },
-       
-        grid:{bottom: "20"}
+        grid: { bottom: "20" }
       },
       yAxis: {
         show: false
@@ -111,8 +117,8 @@ class Home extends Component {
                 show: true,
                 formatter: "{c}℃"
               },
-              lineStyle:{
-                color:'white' //改变折线颜色
+              lineStyle: {
+                color: 'white' //改变折线颜色
               },
               color: '#eee'
             },
@@ -134,19 +140,19 @@ class Home extends Component {
         </Link>
         <Temperature>
           <h2>{weatherData.temperature}°</h2>
-          <span>{weatherData.weather}</span><span>|</span>  
+          <span>{weatherData.weather}</span><span>|</span>
           <span>更新时间:{reportTime.split(' ')[1]}</span>
           <Extra>
             <dl>
               <dt>风力：{weatherData.windPower} | 风向： {weatherData.windDirection} | 空气湿度： {weatherData.humidity}%</dt>
             </dl>
-          </Extra> 
+          </Extra>
         </Temperature>
         <WeatherCircle />
         <MoreInfo>
           <MoreWrapper>
             {
-              this.state.preWeather.slice(1,4).map((item) => (
+              this.state.preWeather.slice(1, 4).map((item) => (
                 <MoreDay key={item.date}>
                   <p>{item.date.substring(5)}</p>
                   <img alt="" src={require('../../static/img/' + `${item.dayWeather}.png`)}></img>
@@ -161,6 +167,13 @@ class Home extends Component {
           </MoreWrapper>
         </MoreInfo>
         <Echartcontaier ref={(echart) => { this.dom = echart }}></Echartcontaier>
+        {
+          this.state.loading ? <Loading>
+                <SpanWrapper>
+                  <Spin />
+                </SpanWrapper>
+              </Loading> : null
+        }
       </HomeWrapper>
     )
   }

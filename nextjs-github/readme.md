@@ -16,3 +16,7 @@ hashChangeComplete
 # getInitialProps
 
 # Hooks 让函数组件具有类组件的能力
+
+# document css-in-js 
+next/js自带模块 引入 
+> import Document, { Html, Head, Main, NextScript } from 'next/document'

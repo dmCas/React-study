@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const HomeWrapper = styled.div`
-  width: 100%;
+  width: 100vw;
   height: 100vh;
   background: url(${props => props.imgUrl});
   background-size: cover;
@@ -10,7 +10,22 @@ export const HomeWrapper = styled.div`
     color: #fff;
   }
 `
+export const Loading = styled.div`
+  width: 100%;
+  height:100%;
+  background-color: #fff;
+  position: fixed;
+  top:0;
+  left:0;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  text-align:center;
+`
 
+export const SpanWrapper = styled.div`
+
+`
 export const Header = styled.div`
   text-align: center;
   padding-top: 30px;

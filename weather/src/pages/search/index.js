@@ -32,9 +32,9 @@ function fetch(value, callback) {
       tem = res.data.citys.filter((item) => item.citysName.includes(value))
       // if(!item){
       //   loading = false
-      if(tem = []){
-        unfound = 'Not Found'
-      }
+      // if(tem = []){
+      //   unfound = 'Not Found'
+      // }
       // }
       // this.setState({
       //   showsearch: this.tem[0].citys.slice(0,15)
