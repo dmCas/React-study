@@ -11,10 +11,11 @@ function Example () {
   // 首次渲染和每一次渲染都会执行
   useEffect(() => {
     console.log(`你点击了 ${count}次`)
+
     return () => {
-      console.log('-----------------')
+      console.log('-----------------你离开了页面，组件卸载')
     }
-  }, [])
+  },[])
 
   return (
     <div>
@@ -42,7 +43,7 @@ function Index () {
       console.log('你离开了Index页面')
     }
   }, [])
-  return <h2>旅梦开发团</h2>
+  return <h2>React Hooks</h2>
 }
 
 function List () {

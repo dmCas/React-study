@@ -26,4 +26,10 @@ function Example() {
 ## useEffect 
    1. React 首次渲染和之后的每一次渲染都会调用useEffect
    2. useEffect里面定义的函数是异步执行的，他不会阻碍浏览器更新视图
+
+## useContext 
+**使父子组件的传值变得更加简单**
+
+## useMemo
+优化Hooks一些缺陷
   
